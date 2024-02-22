@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  vue:
+    build: ./vue3-states-project
+    ports:
+      - "8080:8080"
+    depends_on:
+      - express
+
+  express:
+    build: ./express-states-project
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=db
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: states_project
+      POSTGRES_USER: your_username
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_INITDB_ARGS: "--data-checksums"
+    volumes:
+      - ./usa-states.json:/docker-entrypoint-initdb.d/usa-states.json:ro  #
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+     
+
+volumes:
+  postgres-data:

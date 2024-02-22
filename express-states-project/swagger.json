@@ -1,0 +1,88 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "State API",
+      "description": "API for managing states and counties",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/states": {
+        "get": {
+          "summary": "Get all states",
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "population": {
+                          "type": "integer"
+                        },
+                        "counties": {
+                          "type": "integer"
+                        },
+                        "detail": {
+                          "type": "string",
+                          "format": "uri"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/state/{state_name}": {
+        "get": {
+          "summary": "Get details of a specific state",
+          "parameters": [
+            {
+              "name": "state_name",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "population": {
+                        "type": "integer"
+                      },
+                      "counties": {
+                        "type": "integer"
+                      },
+                      "detail": {
+                        "type": "string",
+                        "format": "uri"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  

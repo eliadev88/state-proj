@@ -1,0 +1,7 @@
+Install Docker-Compose
+Run docker-compose up --build
+
+
+
+#API SWagger Docs
+http://localhost:3000/api-docs/
